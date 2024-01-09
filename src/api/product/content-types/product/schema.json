@@ -31,14 +31,19 @@
     "offPercent": {
       "type": "integer"
     },
-    "image": {
-      "type": "string"
-    },
     "user_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "products"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

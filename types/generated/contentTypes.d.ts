@@ -409,12 +409,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
     description: Attribute.Blocks;
     price: Attribute.Integer;
     offPercent: Attribute.Integer;
-    image: Attribute.String;
     user_id: Attribute.Relation<
       'api::product.product',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    images: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
