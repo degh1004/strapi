@@ -31,7 +31,7 @@
     "offPercent": {
       "type": "integer"
     },
-    "user_id": {
+    "seller": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
@@ -50,6 +50,12 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "transaction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::transaction.transaction",
+      "mappedBy": "product"
     }
   }
 }

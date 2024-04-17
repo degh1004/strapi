@@ -371,7 +371,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -380,9 +380,9 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::category.category',
       'oneToOne',
@@ -415,7 +415,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     description: Attribute.Blocks;
     price: Attribute.Integer;
     offPercent: Attribute.Integer;
-    user_id: Attribute.Relation<
+    seller: Attribute.Relation<
       'api::product.product',
       'manyToOne',
       'plugin::users-permissions.user'
@@ -425,6 +425,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product',
       'manyToOne',
       'api::category.category'
+    >;
+    transaction: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::transaction.transaction'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -437,6 +442,50 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTransactionTransaction extends Schema.CollectionType {
+  collectionName: 'transactions';
+  info: {
+    singularName: 'transaction';
+    pluralName: 'transactions';
+    displayName: 'transaction';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    seller: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    product: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'api::product.product'
+    >;
+    buyer: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::transaction.transaction',
       'oneToOne',
       'admin::user'
     > &
@@ -697,12 +746,17 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    phone: Attribute.Integer;
+    transaction: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::transaction.transaction'
+    >;
     products: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
       'api::product.product'
     >;
-    phone: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -776,6 +830,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::category.category': ApiCategoryCategory;
       'api::product.product': ApiProductProduct;
+      'api::transaction.transaction': ApiTransactionTransaction;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
