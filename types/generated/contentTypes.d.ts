@@ -420,7 +420,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    images: Attribute.Media & Attribute.Required;
+    images: Attribute.Media;
     category: Attribute.Relation<
       'api::product.product',
       'manyToOne',
