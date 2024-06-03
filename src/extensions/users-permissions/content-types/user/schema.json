@@ -79,6 +79,18 @@
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "seller"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "birthdate": {
+      "type": "date"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }
