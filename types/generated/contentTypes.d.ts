@@ -420,7 +420,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    images: Attribute.Media & Attribute.Required;
+    images: Attribute.Media;
     category: Attribute.Relation<
       'api::product.product',
       'manyToOne',
@@ -757,6 +757,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
+    first_name: Attribute.String;
+    last_name: Attribute.String;
+    birthdate: Attribute.Date;
+    address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

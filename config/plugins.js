@@ -1,9 +1,4 @@
 module.exports = ({ env }) => ({
-  'users-permissions': {
-    config: {
-      jwtSecret: env('JWT_SECRET'),
-    },
-  },
   upload: {
     config: {
       provider: 'aws-s3',
@@ -22,6 +17,11 @@ module.exports = ({ env }) => ({
         uploadStream: {},
         delete: {},
       },
+    },
+  },
+  'users-permissions': {
+    config: {
+      jwtSecret: env('JWT_SECRET'),
     },
   },
 })
