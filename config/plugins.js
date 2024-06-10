@@ -1,4 +1,16 @@
 module.exports = ({ env }) => ({
+  email: {
+    config: {
+      provider: 'sendgrid',
+      providerOptions: {
+        apiKey: "mlsn.ddc7e7a860445ddfa2e159e7eb976fc49bebe1054448a119a2be7240a66938a1",
+      },
+      settings: {
+        defaultFrom: 'info@trial-o65qngkk808gwr12.mlsender.net',
+        defaultReplyTo: "info@trial-o65qngkk808gwr12.mlsender.net",
+      },
+    },
+  },
   upload: {
     config: {
       provider: 'aws-s3',
@@ -23,5 +35,5 @@ module.exports = ({ env }) => ({
     config: {
       jwtSecret: env('JWT_SECRET'),
     },
-  },
+  }
 })
