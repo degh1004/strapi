@@ -746,7 +746,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    phone: Attribute.Integer;
     transaction: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
@@ -761,6 +760,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     last_name: Attribute.String;
     birthdate: Attribute.Date;
     address: Attribute.String;
+    phone: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

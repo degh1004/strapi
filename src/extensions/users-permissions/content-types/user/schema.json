@@ -65,9 +65,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "phone": {
-      "type": "integer"
-    },
     "transaction": {
       "type": "relation",
       "relation": "oneToOne",
@@ -90,6 +87,9 @@
       "type": "date"
     },
     "address": {
+      "type": "string"
+    },
+    "phone": {
       "type": "string"
     }
   }
