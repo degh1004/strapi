@@ -20,7 +20,7 @@ module.exports = {
           t.string('address') // Add address field
           t.string('first_name') // Add first_name field
           t.string('last_name') // Add last_name field
-          t.number('phone')  // Add phone field
+          t.int('phone')  // Add phone field
         },
       })
 
