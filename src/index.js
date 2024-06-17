@@ -17,8 +17,10 @@ module.exports = {
       const ExtendedUsersPermissionsRegisterInput = extendInputType({
         type: 'UsersPermissionsRegisterInput',
         definition(t) {
-          t.string('phone')  // Add phone field
           t.string('address') // Add address field
+          t.string('first_name') // Add first_name field
+          t.string('last_name') // Add last_name field
+          t.number('phone')  // Add phone field
         },
       })
 
